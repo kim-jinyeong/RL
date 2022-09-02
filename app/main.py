@@ -14,17 +14,17 @@ app = FastAPI()
 @app.get("/")
 def now():
     pass
-@app.get("/train")
+@app.get("/predict")
 def now():
-    mode = 'train' #'train', 'test', 'update', 'predict'
+    mode = 'predict' #'train', 'test', 'update', 'predict'
     ver = 'v1' # 'v1', 'v2', 'v3', 'v4'
     name = '005930' # 종목코드
     stock_code = ['005930']
     rl_method = 'a2c' # 'dqn', 'pg', 'ac', 'a2c', 'a3c', 'monkey'
     net = 'cnn' # 'dnn', 'lstm', 'cnn', 'monkey'
     backend = 'pytorch'
-    start_date = '2021-08-30'
-    end_date = '2022-08-30'
+    start_date = '2023-08-30'
+    end_date = '2024-08-30'
     lr = 0.0001
     discount_factor = 0.7
     balance = 100000000
@@ -85,7 +85,7 @@ def now():
         # 차트 데이터, 학습 데이터 준비
         chart_data, training_data = data_manager.load_data(
             stock_code, start_date, end_date, ver=ver)
-
+        print(f'여기  {chart_data} , {num_steps}')
         assert len(chart_data) >= num_steps
         
         # 최소/최대 단일 매매 금액 설정
